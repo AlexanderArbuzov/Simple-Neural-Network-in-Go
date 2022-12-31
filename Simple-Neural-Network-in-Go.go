@@ -12,13 +12,13 @@ const (
 	eta            = 0.01
 )
 
-func hiddenLayer(X, biases2 *[]float64, weights1 *[][]float64) *[]float64 {
+func hiddenLayer(x, biases2 *[]float64, weights1 *[][]float64) *[]float64 {
 
 	var hidden = make([]float64, inputValNumber, inputValNumber)
 
 	for i := 0; i < inputValNumber; i++ {
 		for j := 0; j < inputValNumber; j++ {
-			hidden[i] += (*weights1)[i][j] * (*X)[j]
+			hidden[i] += (*weights1)[i][j] * (*x)[j]
 		}
 		hidden[i] = 1 / (1 + (Exp(-hidden[i] - (*biases2)[i])))
 	}
@@ -40,12 +40,12 @@ func outputLayer(hidden, biases3 *[]float64, weights2 *[][]float64) *[]float64 {
 	return &output
 }
 
-func d(output, Y *[]float64) *[]float64 {
+func d(output, y *[]float64) *[]float64 {
 
 	var d = make([]float64, inputValNumber, inputValNumber)
 
 	for i := 0; i < inputValNumber; i++ {
-		d[i] = ((*Y)[i] - (*output)[i]) * (*output)[i] * (1 - (*output)[i])
+		d[i] = ((*y)[i] - (*output)[i]) * (*output)[i] * (1 - (*output)[i])
 	}
 
 	return &d
@@ -92,7 +92,7 @@ func dW2A(d *[]float64, weights2 *[][]float64) *[]float64 {
 	return &dW2A
 }
 
-func dW1(dW2A, X, hidden *[]float64) *[][]float64 {
+func dW1(dW2A, x, hidden *[]float64) *[][]float64 {
 
 	var dW1 = make([][]float64, inputValNumber, inputValNumber)
 
@@ -102,7 +102,7 @@ func dW1(dW2A, X, hidden *[]float64) *[][]float64 {
 
 	for i := 0; i < inputValNumber; i++ {
 		for j := 0; j < inputValNumber; j++ {
-			dW1[i][j] = 2 * ((*dW2A)[i] * (*hidden)[i] * (1 - (*hidden)[i]) * (*X)[j]) / float64(inputValNumber)
+			dW1[i][j] = 2 * ((*dW2A)[i] * (*hidden)[i] * (1 - (*hidden)[i]) * (*x)[j]) / float64(inputValNumber)
 		}
 	}
 
