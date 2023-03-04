@@ -2,8 +2,8 @@
     <body>
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
         <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <link rel="stylesheet" href="styles.css">
-        <div class="image"><img src="neural_network_explained.png"></img></div>
+        <link rel="stylesheet" href="css\styles.css">
+        <div class="image"><img src="imgs\neural_network_explained.png"></img></div>
         <div class="header">Подробно рассматриваем обратное распространение ошибки для простой нейронной сети. Численный пример</div>
         <div class="text">В данной статье мы рассмотрим прямое распространение сигнала и обратное распространение ошибки в полносвязной нейронной сети прямого распространения. В результате получим весь набор формул, необходимых для программной реализации нейронной сети. В завершении статьи рассмотрим численный пример.</div>
         <div class="text">«Полносвязная» (fully connected) — означает, что каждый нейрон предыдущего слоя соединён с каждым нейроном следующего слоя. «Прямого распространения» (feedforward) — означает, что сигнал проходит через нейронную сеть в одном направлении от входного к выходному слою.</div>
@@ -20,7 +20,7 @@
         <div class="text">Нейронная сеть имеет три слоя с тремя нейронами в каждом из них. Нелинейное изменение проходящего через сеть сигнала обеспечивает функция активации сигмоид (sigmoid) на скрытом и выходном слоях:</div>
         <div class="text">\[f(x)=\frac{1}{1+e^{-x}}.\]</div>
         <div class="text">Поскольку на практике большинство реальных данных имеют нелинейный характер, используются нелинейные функции активации, позволяющие извлекать нелинейные зависимости в данных.</div>
-        <div class="image"><img src="neural_network_architecture.png"></img></div>
+        <div class="image"><img src="imgs\neural_network_architecture.png"></img></div>
         <div class="text">Перепишем уравнение рассматриваемой сети для заданных параметров:</div>
         <div class="text">\[\mathbf{a}^3=f(\mathbf{x}^3)=f\left(\left[\begin{matrix}w_{11}^3&w_{12}^3&w_{13}^3\\w_{21}^3&w_{22}^3&w_{23}^3\\w_{31}^3&w_{32}^3&w_{33}^3\\\end{matrix}\right]\times\mathbf{a}^2+\left[\begin{matrix}b_1^3\\b_2^3\\b_3^3\\\end{matrix}\right]\right),\]</div>
         <div class="text">\[\mathbf{a}^2=f(\mathbf{x}^2)=f\left(\left[\begin{matrix}w_{11}^2&w_{12}^2&w_{13}^2\\w_{21}^2&w_{22}^2&w_{23}^2\\w_{31}^2&w_{32}^2&w_{33}^2\\\end{matrix}\right]\times\left[\begin{matrix}x_1^1\\x_2^1\\x_3^1\\\end{matrix}\right]+\left[\begin{matrix}b_1^2\\b_2^2\\b_3^2\\\end{matrix}\right]\right).\]</div>
